@@ -17,7 +17,18 @@ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMAAAKEY
 export AWS_DEFAULT_REGION=us-west-2
 echo "<h1>Deployed via Terraform</h1>" | sudo tee /var/www/html/index.html
 EOF
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_host"
+    yor_trace            = "da01a228-70b4-42e1-8c6b-7005d300beeb"
+  }
 }
 
 resource "aws_ebs_volume" "web_host_storage" {
@@ -25,14 +36,36 @@ resource "aws_ebs_volume" "web_host_storage" {
   availability_zone = "${var.region}a"
   #encrypted         = false  # Setting this causes the volume to be recreated on apply 
   size = 1
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_host_storage"
+    yor_trace            = "40e57e31-b329-4c54-b6bc-278c7bf2f2d5"
+  }
 }
 
 resource "aws_ebs_snapshot" "example_snapshot" {
   # ebs snapshot without encryption
   volume_id   = "${aws_ebs_volume.web_host_storage.id}"
   description = "${local.resource_prefix.value}-ebs-snapshot"
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "example_snapshot"
+    yor_trace            = "675eb7e1-b738-4ce8-aba5-580ad61f275e"
+  }
 }
 
 resource "aws_volume_attachment" "ebs_att" {
@@ -69,14 +102,36 @@ resource "aws_security_group" "web-node" {
     "0.0.0.0/0"]
   }
   depends_on = [aws_vpc.web_vpc]
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web-node"
+    yor_trace            = "c0a021d2-692b-432f-a1ba-ea6b97bcc108"
+  }
 }
 
 resource "aws_vpc" "web_vpc" {
   cidr_block           = "172.16.0.0/16"
   enable_dns_hostnames = true
   enable_dns_support   = true
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_vpc"
+    yor_trace            = "6628674e-3f51-4798-b5dc-49840643fff7"
+  }
 }
 
 resource "aws_subnet" "web_subnet" {
@@ -85,7 +140,18 @@ resource "aws_subnet" "web_subnet" {
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = true
 
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_subnet"
+    yor_trace            = "193131b6-7965-4d14-aec9-0a441ab16bbf"
+  }
 }
 
 resource "aws_subnet" "web_subnet2" {
@@ -94,20 +160,53 @@ resource "aws_subnet" "web_subnet2" {
   availability_zone       = "${var.region}b"
   map_public_ip_on_launch = true
 
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_subnet2"
+    yor_trace            = "5d245f11-ace0-461c-b23a-d38e3ad14132"
+  }
 }
 
 
 resource "aws_internet_gateway" "web_igw" {
   vpc_id = aws_vpc.web_vpc.id
 
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_igw"
+    yor_trace            = "f50c1018-b7cb-4ae8-9e7e-2a8a9d416a8b"
+  }
 }
 
 resource "aws_route_table" "web_rtb" {
   vpc_id = aws_vpc.web_vpc.id
 
-  
+
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web_rtb"
+    yor_trace            = "a4604a47-c4ee-420a-9b46-8419d0d3025b"
+  }
 }
 
 resource "aws_route_table_association" "rtbassoc" {
@@ -134,6 +233,17 @@ resource "aws_network_interface" "web-eni" {
   subnet_id   = aws_subnet.web_subnet.id
   private_ips = ["172.16.10.100"]
 
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "web-eni"
+    yor_trace            = "3351c218-ed94-4a57-b073-2e3afffa4683"
+  }
 }
 
 # VPC Flow Logs to S3
@@ -144,12 +254,34 @@ resource "aws_flow_log" "vpcflowlogs" {
   vpc_id               = aws_vpc.web_vpc.id
 
 
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "vpcflowlogs"
+    yor_trace            = "ff363b2e-f8b6-4cea-bbc7-c396c3e64ece"
+  }
 }
 
 resource "aws_s3_bucket" "flowbucket" {
   bucket        = "${local.resource_prefix.value}-flowlogs"
   force_destroy = true
 
+  tags = {
+    git_commit           = "d4c35e0270bfd542051278ca30b4b3872c1ae0b2"
+    git_file             = "code/deployment_ec2.tf"
+    git_last_modified_at = "2024-01-26 23:01:56"
+    git_last_modified_by = "tprendervill@paloaltonetworks.com"
+    git_modifiers        = "tprendervill"
+    git_org              = "StarlordKorn"
+    git_repo             = "prisma-cloud-devsecops-workshop"
+    yor_name             = "flowbucket"
+    yor_trace            = "38484739-b9a5-41ed-8728-8abcfff5d9d1"
+  }
 }
 
 # OUTPUTS
